@@ -4,12 +4,25 @@ var ReactDOM = require('react-dom');
 
 require('json-editor/dist/jsoneditor.js');
 
+import {createStore, combineReducers} from 'redux';
+import {reducer as formReducer} from 'redux-form';
+import { Provider } from 'react-redux';
+
+const reducers = {
+  // ... your other reducers here ...
+  form: formReducer
+}
+const reducer = combineReducers(reducers);
+const store = createStore(reducer);
+
 import Liform from 'liform-react';
 
 var schema = window.schema;
 
 ReactDOM.render(
-    <Liform schema={schema}/>,
+    <Provider store={store}>
+        <Liform schema={schema} handleSubmit={(data) => {console.log(data);}}/>
+    </Provider>,
     document.getElementById('editor_holder')
 );
 
