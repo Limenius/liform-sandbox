@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
 
-class CarType extends AbstractType
+class ExampleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

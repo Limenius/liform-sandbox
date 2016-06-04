@@ -15,7 +15,7 @@ use Limenius\Liform\Transformer\StringTransformer;
 use Limenius\Liform\Transformer\NumberTransformer;
 use Limenius\Liform\Transformer\BooleanTransformer;
 
-use AppBundle\Form\Type\CarType;
+use AppBundle\Form\Type\ExampleType;
 
 
 class DefaultController extends Controller
@@ -25,7 +25,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(CarType::class, null, array(
+        $form = $this->createForm(ExampleType::class, null, array(
             'method' => 'GET',
         ));
 
