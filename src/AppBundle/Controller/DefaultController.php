@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use Limenius\Liform\Liform;
 use Limenius\Liform\Resolver;
 use Limenius\Liform\Transformer\CompoundTransformer;
 use Limenius\Liform\Transformer\IntegerTransformer;
@@ -28,7 +29,6 @@ class DefaultController extends Controller
             'method' => 'GET',
         ));
 
-        
         $resolver = new Resolver();
         $resolver->addTransformer('compound', new CompoundTransformer($resolver));
         $resolver->addTransformer('integer', new IntegerTransformer());
@@ -39,9 +39,10 @@ class DefaultController extends Controller
         $resolver->addTransformer('choice', new ChoiceTransformer());
         $resolver->addTransformer('percent', new NumberTransformer());
         $resolver->addTransformer('checkbox', new BooleanTransformer());
+        $liform = new Liform($resolver);
         return $this->render('default/index.html.twig', [
             'form' => $form->createView(),
-            'schema' => json_encode($resolver->resolve($form)->transform($form))
+            'schema' => json_encode($liform->transform($form))
         ]);
     }
 }

@@ -8,7 +8,9 @@ framework:
     profiler: { only_exceptions: false }
     assets:
         packages:
-            webpack: ~
+            webpack:
+                base_urls:
+                    - "%assets_base_url%"
 
 web_profiler:
     toolbar: true
