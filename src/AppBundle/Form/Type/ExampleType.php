@@ -12,7 +12,7 @@ class ExampleType extends AbstractType
     {
         $builder
             ->add('text', Type\TextType::class, ['label' => 'text'])
-            ->add('textarea', Type\TextareaType::class, ['label' => 'textarea', 'liform' => ['format' => 'textarea']])
+            ->add('textarea', Type\TextareaType::class, ['label' => 'Description', 'liform' => ['format' => 'textarea']])
             ->add('email', Type\EmailType::class, ['label' => 'email', 'liform' => ['format' => 'email']])
             ->add('integer', Type\IntegerType::class, ['label' => 'integer'])
             ->add('money', Type\MoneyType::class, ['label' => 'money', 'liform' => ['format' => 'money']])
