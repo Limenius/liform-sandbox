@@ -18,3 +18,4 @@
 /node_modules/
 /app/Resources/webpack/*
 !/app/Resources/webpack/.gitkeep
+studio.json
