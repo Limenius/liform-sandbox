@@ -13,15 +13,40 @@ const reducers = {
   form: formReducer
 }
 const reducer = combineReducers(reducers);
-const store = createStore(reducer);
+const initialState = {
+    form: {initialValues: {name: 'toyota'}}
+};
+const store = createStore(reducer, initialState);
 
 import Liform from 'liform-react';
 
 var schema = window.schema;
 
+const submit = (values, dispatch) =>
+{
+    return new Promise((resolve, reject) => {
+        console.log(values);
+        console.log(values);
+        fetch("/car", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+        })
+        .then(function(response) {
+            if (response.status == 400) {
+                reject({name: 'wrong'});
+            }
+            resolve();
+        });
+    })
+}
+
 ReactDOM.render(
     <Provider store={store}>
-        <Liform schema={schema} handleSubmit={(data) => {console.log(data);}}/>
+        <Liform schema={schema} handleSubmit={submit} mapStateToProps={(state) => ({initialValues: state.form.initialValues})}/>
     </Provider>,
     document.getElementById('editor_holder')
 );

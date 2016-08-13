@@ -5,18 +5,19 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ExampleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('text', Type\TextType::class, ['label' => 'text'])
-            ->add('textarea', Type\TextareaType::class, ['label' => 'Description', 'liform' => ['format' => 'textarea']])
-            ->add('email', Type\EmailType::class, ['label' => 'email', 'liform' => ['format' => 'email']])
-            ->add('integer', Type\IntegerType::class, ['label' => 'integer'])
-            ->add('money', Type\MoneyType::class, ['label' => 'money', 'liform' => ['format' => 'money']])
-            ->add('number', Type\NumberType::class, ['label' => 'number'])
+            ->add('text', Type\TextType::class, ['label' => 'Some text', 'attr' => ['pattern' => '.{5,}', 'required' => true], 'liform' => ['description' => 'This is a help message']])
+            ->add('textarea', Type\TextareaType::class, ['label' => 'Description', 'attr' => ['placeholder' => 'A description...'], 'liform' => ['format' => 'textarea']])
+            ->add('email', Type\EmailType::class, ['label' => 'E-mail', 'liform' => ['format' => 'email'], 'required' => 'true'])
+            ->add('integer', Type\IntegerType::class, ['label' => 'An integer'])
+            ->add('money', Type\MoneyType::class, ['label' => 'Money', 'liform' => ['format' => 'money']])
+            ->add('number', Type\NumberType::class, ['label' => 'Number'])
             //->add('password', Type\PasswordType::class, ['label' => 'password'])
             //->add('percent', Type\PercentType::class, ['label' => 'percent'])
             //->add('search', Type\SearchType::class, ['label' => 'search'])
