@@ -14,7 +14,7 @@ const reducers = {
 }
 const reducer = combineReducers(reducers);
 const initialState = {
-    form: {initialValues: {name: 'toyota'}}
+    form: {initialValues: window.initialValues}
 };
 const store = createStore(reducer, initialState);
 
@@ -25,8 +25,6 @@ var schema = window.schema;
 const submit = (values, dispatch) =>
 {
     return new Promise((resolve, reject) => {
-        console.log(values);
-        console.log(values);
         fetch("/car", {
             method: "POST",
             headers: {

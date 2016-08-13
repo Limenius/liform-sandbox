@@ -55,6 +55,7 @@ class DefaultController extends Controller
     public function carAction(Request $request)
     {
         $car = new Car();
+        $car->setName('Cadillac');
 
         $form = $this->createForm(CarType::class, $car);
         $resolver = new Resolver();
@@ -80,7 +81,8 @@ class DefaultController extends Controller
 
         return $this->render('default/index.html.twig', [
             'form' => $form->createView(),
-            'schema' => json_encode($liform->transform($form))
+            'schema' => json_encode($liform->transform($form)),
+            'initialValues' => $this->get('serializer')->serialize($car, 'json')
         ]);
     }
 }

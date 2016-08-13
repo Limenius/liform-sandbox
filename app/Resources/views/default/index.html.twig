@@ -13,5 +13,10 @@ console.log(window.schema);
     <div id="editor_holder"/>
     </div>
     </div>
+    {% if initialValues is defined %}
+    <script>
+    window.initialValues = {{ initialValues|raw}};
+    </script>
+    {% endif %}
 </div>
 {% endblock %}
